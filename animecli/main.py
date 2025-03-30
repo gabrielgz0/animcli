@@ -1,6 +1,6 @@
 import argparse
-from .animation import animate
-from .gif_converter import gif_to_ascii_frames
+from animation import animate
+from gif_converter import gif_to_ascii_frames
 
 import os
 import sys
@@ -23,13 +23,6 @@ def main():
         type=float, 
         help='The length of time between each frame.', 
         default=0.05
-    )
-
-    parser.add_argument(
-        '--color', 
-        type=str, 
-        help='Choose the text color (options: header, blue, green, warning, fail, light_blue, light_green, light_yellow, light_red, light_cyan, light_magenta)', 
-        default='blue'
     )
 
     parser.add_argument(
