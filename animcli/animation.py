@@ -2,7 +2,7 @@ import time
 import os
 import platform
 
-from ascii_magic import to_terminal # type: ignore
+import ascii_magic # type: ignore
 
 def animate(duration: float, cycles: int, frames: list[str]):
     """
@@ -10,16 +10,23 @@ def animate(duration: float, cycles: int, frames: list[str]):
     """
     count = 0
 
-    # verifica o OS pra adaptar o comando de clear
     clear_screen = lambda: os.system('cls' if platform.system() == 'Windows' else 'clear')
+    hide_cursor  = lambda: os.system('echo \033[?25l')
+    show_cursor  = lambda: os.system('echo \033[?25h')
 
-    while count < cycles:
-        try:
+    hide_cursor()
+
+    try:
+        while count < cycles:
             for frame in frames:
-                to_terminal(frame)
+                ascii_magic.to_terminal(frame)
                 time.sleep(duration)
+                
                 clear_screen()
+                
             count += 1
-        except KeyboardInterrupt:
-            clear_screen()
-            break
+    except KeyboardInterrupt:
+        pass
+    finally:
+        show_cursor()
+        clear_screen()

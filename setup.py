@@ -1,27 +1,23 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='animecli',
-    version='0.1',
+    name='animcli',
+    version='0.2.1',
     packages=find_packages(),
-    install_requires=[],
+    install_requires=[
+        "ascii_magic==1.6"
+    ],
     entry_points={
         'console_scripts': [
-            'animecli=animecli.main:main',
+            'animcli=animcli.main:main',
         ],
     },
     package_data={
-        'animecli': ['gifs/*.gif'],
+        'animcli': ['gifs/*.gif'],
     },
     include_package_data=True,
     description='Transform a GIF into ascii and animate it in the terminal',
-    long_description=open('readme.md').read(),
+    long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='gabrielgz',
-    #author_email='',
-    #url='https://github.com/seuusuario/meu_modulo',
-    # classifiers=[
-    #     'Programming Language :: Python :: 3',
-    #     'License :: OSI Approved :: MIT License',
-    # ],
 )
