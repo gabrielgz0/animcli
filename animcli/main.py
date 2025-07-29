@@ -21,14 +21,14 @@ def main():
         '--cycles', 
         type=int, 
         help='The number of cycles the animation runs.',
-        default=100
+        default=50
     )
     
     parser.add_argument(
         '--duration', 
         type=float, 
         help='The length of time between each frame.', 
-        default=0.05
+        default=0.1
     )
 
     parser.add_argument(
@@ -75,7 +75,9 @@ def main():
         print(f"Error: '{gif_path}' not found!")
         sys.exit(1)
 
+    print(f"Converting GIF to ASCII frames...")
     frames = gif_to_ascii_frames(gif_path, args.width, args.columns)
+    print(f"Generated {len(frames)} frames. Starting animation...")
 
     animate(
         cycles=args.cycles,
